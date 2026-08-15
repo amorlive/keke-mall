@@ -1,0 +1,93 @@
+// ============================
+// 可可手作 · 设计 Token
+// 新中式典雅：朱砂 + 黛黑 + 米杏 + 金箔
+// ============================
+
+:root {
+  // —— 品牌主色 ——
+  --color-primary: #7A2E2A;        // 朱砂红（主色）
+  --color-primary-light: #A04B47;  // 浅朱砂
+  --color-primary-dark: #5A1F1C;   // 深朱砂
+  --color-primary-50: #FBF1EF;     // 朱砂 50
+
+  // —— 中性色 ——
+  --color-ink: #2B2118;            // 黛黑（主文字）
+  --color-ink-2: #5C4D3F;          // 次级文字
+  --color-ink-3: #8B7B6E;          // 辅助文字
+  --color-ink-4: #C4B7A8;          // 占位/分割
+
+  // —— 背景 ——
+  --color-bg: #F5EFE6;             // 米杏（主背景）
+  --color-bg-2: #FAF6EF;           // 卡片背景
+  --color-bg-3: #EFE5D5;           // 深底背景
+
+  // —— 点缀 ——
+  --color-gold: #C9A961;           // 金箔（高端点缀）
+  --color-gold-light: #E0CC92;
+  --color-jade: #6B8E6B;           // 玉绿（状态点缀）
+
+  // —— 功能色 ——
+  --color-success: #6B8E6B;
+  --color-warning: #C9A961;
+  --color-danger: #B23A3A;
+  --color-info: #6B7E8E;
+
+  // —— 字体 ——
+  --font-serif: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif CJK SC", "FangSong", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  // —— 圆角 ——
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  // —— 阴影 ——
+  --shadow-sm: 0 2px 6px rgba(43, 33, 24, 0.04);
+  --shadow-md: 0 4px 16px rgba(43, 33, 24, 0.08);
+  --shadow-lg: 0 8px 28px rgba(43, 33, 24, 0.12);
+
+  // —— 间距 ——
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  // —— 字号 ——
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 20px;
+  --text-3xl: 24px;
+  --text-4xl: 28px;
+}
+
+// Vant 主题变量覆盖
+:root {
+  --van-primary-color: var(--color-primary);
+  --van-background: var(--color-bg);
+  --van-background-2: var(--color-bg-2);
+  --van-text-color: var(--color-ink);
+  --van-text-color-2: var(--color-ink-2);
+  --van-text-color-3: var(--color-ink-3);
+  --van-border-color: var(--color-ink-4);
+  --van-button-primary-background: var(--color-primary);
+  --van-button-primary-border-color: var(--color-primary);
+  --van-tabbar-item-active-color: var(--color-primary);
+  --van-nav-bar-background: var(--color-bg);
+  --van-nav-bar-title-text-color: var(--color-ink);
+  --van-nav-bar-icon-color: var(--color-ink);
+  --van-tab-active-text-color: var(--color-primary);
+  --van-tab-indicator-color: var(--color-primary);
+  --van-tag-primary-color: var(--color-primary);
+  --van-cell-background: var(--color-bg-2);
+}

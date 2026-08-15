@@ -1,0 +1,102 @@
+@use './tokens.scss';
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-ink);
+  background: var(--color-bg);
+}
+
+#app {
+  min-height: 100%;
+}
+
+// 标题用宋体
+.title-serif, .brand-title {
+  font-family: var(--font-serif);
+  letter-spacing: 0.05em;
+}
+
+// 通用文字工具
+.text-ink { color: var(--color-ink); }
+.text-ink-2 { color: var(--color-ink-2); }
+.text-ink-3 { color: var(--color-ink-3); }
+.text-primary { color: var(--color-primary); }
+.text-gold { color: var(--color-gold); }
+.text-success { color: var(--color-success); }
+.text-danger { color: var(--color-danger); }
+
+.bg-base { background: var(--color-bg); }
+.bg-card { background: var(--color-bg-2); }
+.bg-deep { background: var(--color-bg-3); }
+
+// 容器
+.page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.section {
+  margin: var(--space-4);
+  background: var(--color-bg-2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-ink-4), transparent);
+  margin: var(--space-4) 0;
+}
+
+// 标签胶囊
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+  border: 1px solid rgba(122, 46, 42, 0.15);
+}
+
+.tag-pill.gold {
+  background: rgba(201, 169, 97, 0.12);
+  color: var(--color-gold);
+  border-color: rgba(201, 169, 97, 0.3);
+}
+
+// 价格
+.price {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.price-symbol {
+  font-size: 0.8em;
+  margin-right: 1px;
+}
+.price-old {
+  color: var(--color-ink-3);
+  text-decoration: line-through;
+  font-size: var(--text-sm);
+  margin-left: 4px;
+}
+
+// 滚动条
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+// 通用动画
+.fade-enter-active, .fade-leave-active { transition: opacity 0.25s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }

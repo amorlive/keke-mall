@@ -1,0 +1,278 @@
+// ============================
+// Mock 数据
+// ============================
+
+// 分类
+export const categories = [
+  { id: 1, name: '发卡', icon: '🌸', count: 12 },
+  { id: 2, name: '抓夹', icon: '🦋', count: 8 },
+  { id: 3, name: '手链', icon: '📿', count: 15 },
+  { id: 4, name: '项链', icon: '✨', count: 9 },
+  { id: 5, name: '簪子', icon: '🎀', count: 6 },
+  { id: 6, name: '耳饰', icon: '💎', count: 11 },
+  { id: 7, name: '胸针', icon: '🌺', count: 7 },
+  { id: 8, name: '套装', icon: '🎁', count: 5 }
+]
+
+// 商品（使用 picsum 风格占位图 + 文字）
+// 为视觉统一，使用纯色渐变图作为封面，存为 SVG dataURL
+const coverColors = [
+  ['#7A2E2A', '#A04B47'],   // 朱砂
+  ['#5A1F1C', '#7A2E2A'],   // 深朱
+  ['#C9A961', '#E0CC92'],   // 金箔
+  ['#6B8E6B', '#9CB89C'],   // 玉绿
+  ['#8B5A3C', '#A87554'],   // 棕褐
+  ['#3D2E2A', '#5C4D3F'],   // 黛黑
+  ['#A04B47', '#C9A961'],   // 朱金
+  ['#4A3B2A', '#7A2E2A']    // 褐朱
+]
+
+function makeCover(idx, label) {
+  const [c1, c2] = coverColors[idx % coverColors.length]
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'>
+    <defs>
+      <linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'>
+        <stop offset='0%' stop-color='${c1}'/>
+        <stop offset='100%' stop-color='${c2}'/>
+      </linearGradient>
+      <pattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'>
+        <path d='M0 20 Q10 0 20 20 T40 20' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='1'/>
+      </pattern>
+    </defs>
+    <rect width='400' height='400' fill='url(#g)'/>
+    <rect width='400' height='400' fill='url(#p)'/>
+    <circle cx='200' cy='180' r='80' fill='rgba(255,255,255,0.15)'/>
+    <circle cx='200' cy='180' r='60' fill='rgba(255,255,255,0.1)'/>
+    <text x='200' y='190' text-anchor='middle' font-size='24' fill='rgba(255,255,255,0.85)' font-family='serif' letter-spacing='4'>${label}</text>
+    <text x='200' y='320' text-anchor='middle' font-size='14' fill='rgba(255,255,255,0.6)' font-family='serif' letter-spacing='6'>可 可 手 作</text>
+  </svg>`
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg)
+}
+
+export const goodsList = [
+  {
+    id: 1, name: '锦绣 · 朱砂发卡', category: 1,
+    cover: makeCover(0, '发卡'),
+    images: [makeCover(0, '发卡'), makeCover(1, '发卡'), makeCover(2, '发卡')],
+    price: 39, originalPrice: 58, stock: 23, sales: 156,
+    tags: ['新品', '热卖'],
+    brief: '宋锦老缎手作，朱砂红底金线绞边，复古雅致',
+    desc: '采用老苏州宋锦面料，朱砂红底配金箔色绞边，手工缝制，适合发量少或盘发使用。',
+    specs: [{ name: '配色', values: ['朱砂红', '黛黑', '米杏'] }, { name: '尺寸', values: ['中号 8cm', '大号 10cm'] }],
+    isGroup: true, isJieLong: true
+  },
+  {
+    id: 2, name: '云锦 · 大号抓夹', category: 2,
+    cover: makeCover(3, '抓夹'),
+    images: [makeCover(3, '抓夹'), makeCover(0, '抓夹')],
+    price: 49, originalPrice: 79, stock: 41, sales: 287,
+    tags: ['拼团'],
+    brief: '云锦面料大号抓夹，盘发利器',
+    desc: '采用南京云锦碎料拼接，金属哑光夹，承重力强不扯发。',
+    specs: [{ name: '配色', values: ['玉绿', '黛黑'] }],
+    isGroup: true
+  },
+  {
+    id: 3, name: '缠枝 · 宋锦手链', category: 3,
+    cover: makeCover(1, '手链'),
+    images: [makeCover(1, '手链'), makeCover(4, '手链')],
+    price: 88, originalPrice: 128, stock: 12, sales: 96,
+    tags: ['手作', '限量'],
+    brief: '缠枝纹宋锦 + 925 银扣',
+    desc: '手工编织，宋锦缠枝纹 + 925 银磁扣，可调节尺寸。',
+    specs: [{ name: '配色', values: ['朱砂', '玉绿', '金箔'] }],
+    isGroup: true, isJieLong: true
+  },
+  {
+    id: 4, name: '鎏金 · 锁骨项链', category: 4,
+    cover: makeCover(2, '项链'),
+    images: [makeCover(2, '项链')],
+    price: 158, originalPrice: 198, stock: 8, sales: 64,
+    tags: ['新品'],
+    brief: '鎏金包边 + 宋锦小方牌',
+    desc: '925 银镀 18K 金，宋锦 1.5cm 小方牌吊坠。',
+    specs: [{ name: '链长', values: ['40cm + 5cm 延长链'] }],
+    isGroup: true
+  },
+  {
+    id: 5, name: '玉兰 · 古典发簪', category: 5,
+    cover: makeCover(5, '簪子'),
+    images: [makeCover(5, '簪子'), makeCover(7, '簪子')],
+    price: 68, originalPrice: 98, stock: 19, sales: 134,
+    tags: ['热卖'],
+    brief: '木质簪身 + 宋锦玉兰花',
+    desc: '檀木簪身，宋锦玉兰花头，U 型插针不伤发。',
+    specs: [{ name: '簪长', values: ['15cm', '18cm'] }],
+    isGroup: true, isJieLong: true
+  },
+  {
+    id: 6, name: '青鸾 · 宋锦耳饰', category: 6,
+    cover: makeCover(6, '耳饰'),
+    images: [makeCover(6, '耳饰')],
+    price: 58, originalPrice: 88, stock: 30, sales: 78,
+    tags: [],
+    brief: '小方块耳坠 + 925 银耳钩',
+    desc: '宋锦小方块 1.2cm，925 银耳钩，敏感肌可用。',
+    specs: [{ name: '配色', values: ['朱砂', '金箔', '玉绿'] }]
+  },
+  {
+    id: 7, name: '蝶恋 · 胸针', category: 7,
+    cover: makeCover(7, '胸针'),
+    images: [makeCover(7, '胸针')],
+    price: 35, originalPrice: 52, stock: 50, sales: 211,
+    tags: ['拼团'],
+    brief: '蝴蝶造型 + 宋锦拼色',
+    desc: '5cm 蝴蝶胸针，合金别针。',
+    specs: [{ name: '配色', values: ['朱金', '黛黑'] }],
+    isGroup: true
+  },
+  {
+    id: 8, name: '锦上添花 · 套装', category: 8,
+    cover: makeCover(0, '套装'),
+    images: [makeCover(0, '套装'), makeCover(1, '套装')],
+    price: 199, originalPrice: 298, stock: 5, sales: 43,
+    tags: ['套装', '限量', '推荐'],
+    brief: '发卡 + 抓夹 + 耳饰 三件套',
+    desc: '同色系宋锦三件套，礼盒装，送人或自用都合适。',
+    specs: [{ name: '配色', values: ['朱砂', '金箔', '玉绿'] }],
+    isGroup: true, isJieLong: true
+  },
+  {
+    id: 9, name: '流光 · 简约发卡', category: 1,
+    cover: makeCover(4, '发卡'),
+    images: [makeCover(4, '发卡')],
+    price: 29, originalPrice: 45, stock: 60, sales: 312,
+    tags: ['热卖'],
+    brief: '极简金边发卡，日常百搭',
+    desc: '1.5cm 合金发卡，哑光金/银两色。',
+    specs: [{ name: '配色', values: ['金色', '银色'] }]
+  },
+  {
+    id: 10, name: '蝶舞 · 中号抓夹', category: 2,
+    cover: makeCover(6, '抓夹'),
+    images: [makeCover(6, '抓夹')],
+    price: 39, originalPrice: 59, stock: 35, sales: 178,
+    tags: ['拼团'],
+    brief: '蝴蝶造型抓夹，半扎发神器',
+    desc: '7cm 蝴蝶抓夹，金属弹簧。',
+    specs: [{ name: '配色', values: ['朱金', '黛黑'] }],
+    isGroup: true
+  }
+]
+
+// 拼团活动
+export const groupList = [
+  {
+    id: 'g1', goodsId: 1, name: '朱砂发卡 2 人团', price: 29, originalPrice: 39,
+    peopleNeeded: 2, joined: 1, expireAt: Date.now() + 3600 * 1000 * 12,
+    cover: makeCover(0, '拼团'),
+    status: 'active'
+  },
+  {
+    id: 'g2', goodsId: 2, name: '云锦抓夹 3 人团', price: 35, originalPrice: 49,
+    peopleNeeded: 3, joined: 2, expireAt: Date.now() + 3600 * 1000 * 6,
+    cover: makeCover(3, '拼团'),
+    status: 'active'
+  },
+  {
+    id: 'g3', goodsId: 3, name: '缠枝手链 3 人团', price: 68, originalPrice: 88,
+    peopleNeeded: 3, joined: 0, expireAt: Date.now() + 3600 * 1000 * 24,
+    cover: makeCover(1, '拼团'),
+    status: 'active'
+  }
+]
+
+// 接龙活动
+export const jieLongList = [
+  {
+    id: 'j1', title: '【可可手作】春日宋锦发卡专场', goodsId: 1,
+    initiator: { nickname: '可可不加班', avatar: '🌸' },
+    deadline: Date.now() + 3600 * 1000 * 8,
+    currentCount: 12, targetCount: 30,
+    cover: makeCover(0, '接龙'),
+    price: 35,
+    participants: [
+      { nickname: '小米', count: 2, time: '12 分钟前' },
+      { nickname: 'Lisa', count: 1, time: '18 分钟前' },
+      { nickname: '阿月', count: 3, time: '25 分钟前' }
+    ]
+  },
+  {
+    id: 'j2', title: '母亲节宋锦礼盒接龙 · 限量 50 套', goodsId: 8,
+    initiator: { nickname: '可可不加班', avatar: '🌸' },
+    deadline: Date.now() + 3600 * 1000 * 24,
+    currentCount: 23, targetCount: 50,
+    cover: makeCover(0, '接龙'),
+    price: 179,
+    participants: [
+      { nickname: '珍珍', count: 1, time: '5 分钟前' },
+      { nickname: 'Nina', count: 2, time: '15 分钟前' }
+    ]
+  },
+  {
+    id: 'j3', title: '【手作新店首发】缠枝手链首发', goodsId: 3,
+    initiator: { nickname: '可可不加班', avatar: '🌸' },
+    deadline: Date.now() + 3600 * 1000 * 48,
+    currentCount: 8, targetCount: 20,
+    cover: makeCover(1, '接龙'),
+    price: 78,
+    participants: [
+      { nickname: '糖糖', count: 1, time: '2 小时前' }
+    ]
+  }
+]
+
+// 订单（mock）
+export const orders = [
+  { id: 'o20260908001', goodsId: 1, goodsName: '锦绣 · 朱砂发卡', cover: makeCover(0, '订单'), price: 39, count: 1, total: 39, status: '待发货', createTime: '2026-09-08 10:23' },
+  { id: 'o20260907002', goodsId: 3, goodsName: '缠枝 · 宋锦手链', cover: makeCover(1, '订单'), price: 88, count: 1, total: 88, status: '待收货', createTime: '2026-09-07 15:42' },
+  { id: 'o20260905003', goodsId: 5, goodsName: '玉兰 · 古典发簪', cover: makeCover(5, '订单'), price: 68, count: 2, total: 136, status: '已完成', createTime: '2026-09-05 09:18' }
+]
+
+// 收货地址
+export const addresses = [
+  { id: 1, name: '可可', phone: '138****8888', province: '江苏省', city: '苏州市', district: '姑苏区', detail: '平江路 88 号 2 楼', isDefault: true },
+  { id: 2, name: '妈妈', phone: '139****6666', province: '浙江省', city: '杭州市', district: '西湖区', detail: '文三路 100 号', isDefault: false }
+]
+
+// 优惠券
+export const coupons = [
+  { id: 1, name: '满 100 减 10', amount: 10, condition: 100, expire: '2026-10-30', status: 'unused' },
+  { id: 2, name: '满 200 减 25', amount: 25, condition: 200, expire: '2026-10-30', status: 'unused' },
+  { id: 3, name: '新人 5 元券', amount: 5, condition: 0, expire: '永久', status: 'unused' }
+]
+
+// 用户
+export const currentUser = {
+  nickname: '可可不加班',
+  avatar: '🌸',
+  level: '银卡会员',
+  points: 286,
+  balance: 0,
+  couponCount: 3,
+  favoriteCount: 8,
+  orderCount: 12,
+  inviteCode: 'KEKE2026',
+  isDistributor: true
+}
+
+// 拼团记录
+export const myGroup = [
+  { id: 'g1', goodsName: '朱砂发卡 2 人团', cover: makeCover(0, '团'), status: '已成团', time: '2026-09-05', need: 2, joined: 2 },
+  { id: 'g2', goodsName: '云锦抓夹 3 人团', cover: makeCover(3, '团'), status: '拼团中', time: '2026-09-08', need: 3, joined: 2 }
+]
+
+// 接龙记录
+export const myJieLong = [
+  { id: 'j1', title: '春日宋锦发卡专场', status: '进行中', deadline: '8 小时后截止', currentCount: 12, targetCount: 30 },
+  { id: 'j2', title: '母亲节宋锦礼盒接龙', status: '已截止', deadline: '已截止', currentCount: 50, targetCount: 50 }
+]
+
+// 工具函数
+export function findGoods(id) {
+  return goodsList.find(g => g.id === Number(id))
+}
+
+export function findCategory(id) {
+  return categories.find(c => c.id === Number(id))
+}

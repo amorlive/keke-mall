@@ -1,0 +1,1 @@
+function e(r){return Number(r).toFixed(2)}function i(r){const t=r-Date.now();if(t<=0)return"已结束";const n=Math.floor(t/36e5),o=Math.floor(t%36e5/6e4),f=Math.floor(t%6e4/1e3);return n>0?`${n}小时${o}分`:o>0?`${o}分${f}秒`:`${f}秒`}export{e as f,i as t};
